@@ -1,0 +1,244 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "sources": {
+    "paging-linear-translate.py": "a65b1b92f8b98ee7d9df98e8f37f084319054e9c5c6b501396fa3dcbd5b85e3d",
+    "segmentation.py": "d3831c0db33354762d59d92225654c9332145f263452bbc901fda5e1f9d8f41c"
+  },
+  "checks": {
+    "table_counts": true,
+    "page_size_counts": true,
+    "allocation_constant_size": true,
+    "segmentation_all": true,
+    "empty_segments": true,
+    "expected_rejections": true,
+    "remaining_runs_succeeded": true
+  },
+  "runs": [
+    {
+      "name": "table_1m",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 1m -p 512m -v -n 0 -c",
+      "exit_status": 0,
+      "entries": 1024,
+      "valid_entries": 519,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "table_2m",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 2m -p 512m -v -n 0 -c",
+      "exit_status": 0,
+      "entries": 2048,
+      "valid_entries": 1035,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "table_4m",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 4m -p 512m -v -n 0 -c",
+      "exit_status": 0,
+      "entries": 4096,
+      "valid_entries": 2062,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "pagesize_2k",
+      "command": "python3 source/paging-linear-translate.py -P 2k -a 4m -p 512m -v -n 0 -c",
+      "exit_status": 0,
+      "entries": 2048,
+      "valid_entries": 1035,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "pagesize_4k",
+      "command": "python3 source/paging-linear-translate.py -P 4k -a 4m -p 512m -v -n 0 -c",
+      "exit_status": 0,
+      "entries": 1024,
+      "valid_entries": 519,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "allocation_0",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 0 -c",
+      "exit_status": 0,
+      "entries": 16,
+      "valid_entries": 0,
+      "valid_translations": 0,
+      "invalid_translations": 5
+    },
+    {
+      "name": "allocation_25",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 25 -c",
+      "exit_status": 0,
+      "entries": 16,
+      "valid_entries": 6,
+      "valid_translations": 1,
+      "invalid_translations": 4
+    },
+    {
+      "name": "allocation_50",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 50 -c",
+      "exit_status": 0,
+      "entries": 16,
+      "valid_entries": 9,
+      "valid_translations": 3,
+      "invalid_translations": 2
+    },
+    {
+      "name": "allocation_100",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 100 -c",
+      "exit_status": 0,
+      "entries": 16,
+      "valid_entries": 16,
+      "valid_translations": 5,
+      "invalid_translations": 0
+    },
+    {
+      "name": "seed_1",
+      "command": "python3 source/paging-linear-translate.py -P 8 -a 32 -p 1024 -v -s 1 -c",
+      "exit_status": 0,
+      "entries": 4,
+      "valid_entries": 1,
+      "valid_translations": 1,
+      "invalid_translations": 4
+    },
+    {
+      "name": "seed_2",
+      "command": "python3 source/paging-linear-translate.py -P 8k -a 32k -p 1m -v -s 2 -c",
+      "exit_status": 0,
+      "entries": 4,
+      "valid_entries": 2,
+      "valid_translations": 0,
+      "invalid_translations": 5
+    },
+    {
+      "name": "seed_3",
+      "command": "python3 source/paging-linear-translate.py -P 1m -a 256m -p 512m -v -s 3 -c",
+      "exit_status": 0,
+      "entries": 256,
+      "valid_entries": 120,
+      "valid_translations": 3,
+      "invalid_translations": 2
+    },
+    {
+      "name": "over_physical",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 64k -p 32k -v -c",
+      "exit_status": 1,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "equal_physical",
+      "command": "python3 source/paging-linear-translate.py -P 1k -a 32k -p 32k -v -c",
+      "exit_status": 1,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "tiny_page",
+      "command": "python3 source/paging-linear-translate.py -P 1 -a 16 -p 32 -v -c",
+      "exit_status": 0,
+      "entries": 16,
+      "valid_entries": 9,
+      "valid_translations": 3,
+      "invalid_translations": 2
+    },
+    {
+      "name": "whole_space_page",
+      "command": "python3 source/paging-linear-translate.py -P 16k -a 16k -p 32k -v -c",
+      "exit_status": 0,
+      "entries": 1,
+      "valid_entries": 1,
+      "valid_translations": 5,
+      "invalid_translations": 0
+    },
+    {
+      "name": "oversized_page",
+      "command": "python3 source/paging-linear-translate.py -P 32k -a 16k -p 64k -v -c",
+      "exit_status": 1,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "nonpower_page",
+      "command": "python3 source/paging-linear-translate.py -P 3k -a 16k -p 64k -v -c",
+      "exit_status": 1,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "size_cap",
+      "command": "python3 source/paging-linear-translate.py -P 1m -a 256m -p 1g -v -c",
+      "exit_status": 1,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 0,
+      "invalid_translations": 0
+    },
+    {
+      "name": "seg_seed_0",
+      "command": "python3 source/segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -s 0 -c",
+      "exit_status": 0,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 1,
+      "invalid_translations": 4
+    },
+    {
+      "name": "seg_seed_1",
+      "command": "python3 source/segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -s 1 -c",
+      "exit_status": 0,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 2,
+      "invalid_translations": 3
+    },
+    {
+      "name": "seg_seed_2",
+      "command": "python3 source/segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -s 2 -c",
+      "exit_status": 0,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 4,
+      "invalid_translations": 1
+    },
+    {
+      "name": "seg_boundaries",
+      "command": "python3 source/segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -A 0,19,20,63,64,107,108,127 -c",
+      "exit_status": 0,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 4,
+      "invalid_translations": 4
+    },
+    {
+      "name": "seg_all_addresses",
+      "command": "python3 source/segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -A 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127 -c",
+      "exit_status": 0,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 40,
+      "invalid_translations": 88
+    },
+    {
+      "name": "seg_empty",
+      "command": "python3 source/segmentation.py -a 128 -p 512 -b 0 -l 0 -B 512 -L 0 -A 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127 -c",
+      "exit_status": 0,
+      "entries": 0,
+      "valid_entries": 0,
+      "valid_translations": 0,
+      "invalid_translations": 128
+    }
+  ]
+}
